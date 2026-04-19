@@ -1,0 +1,60 @@
+{
+  "entities": {
+    "User": {
+      "title": "User Profile",
+      "description": "User account information and farm details",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "description": "Full name" },
+        "email": { "type": "string", "format": "email", "description": "Email address" },
+        "farmDetails": { "type": "string", "description": "General description of the farm" }
+      },
+      "required": ["name", "email"]
+    },
+    "Crop": {
+      "title": "Crop Data",
+      "description": "Information about crops grown on the farm",
+      "type": "object",
+      "properties": {
+        "cropName": { "type": "string" },
+        "season": { "type": "string" },
+        "yield": { "type": "number" },
+        "soilType": { "type": "string" },
+        "userId": { "type": "string" }
+      },
+      "required": ["cropName", "season", "userId"]
+    },
+    "Fertilizer": {
+      "title": "Fertilizer Data",
+      "description": "Information about fertilizer usage",
+      "type": "object",
+      "properties": {
+        "type": { "type": "string" },
+        "quantity": { "type": "number" },
+        "crop": { "type": "string" },
+        "userId": { "type": "string" }
+      },
+      "required": ["type", "quantity", "userId"]
+    },
+    "Log": {
+      "title": "Farming Log",
+      "description": "Historical records of farming activities",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "type": { "type": "string", "enum": ["crop", "fertilizer"] },
+        "cropData": { "type": "object" },
+        "fertilizerUsage": { "type": "object" },
+        "profit": { "type": "number" },
+        "timestamp": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "timestamp"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": { "schema": "User", "description": "User profiles" },
+    "/crops/{cropId}": { "schema": "Crop", "description": "Crop records" },
+    "/fertilizers/{fertId}": { "schema": "Fertilizer", "description": "Fertilizer records" },
+    "/logs/{logId}": { "schema": "Log", "description": "Activity logs" }
+  }
+}

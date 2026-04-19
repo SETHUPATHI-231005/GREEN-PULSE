@@ -1,0 +1,6 @@
+{
+  "name": "GreenPulse",
+  "description": "GreenPulse is an advanced Smart Farming Platform localized for South Indian agriculture, providing precision crop recommendations, fertilizer optimization, and disease detection with local AI.",
+  "requestFramePermissions": ["camera"],
+  "majorCapabilities": []
+}
